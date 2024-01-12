@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Detail</title>
+  <!-- Thêm link Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa; /* Màu nền xám nhạt */
+      font-family: Arial, sans-serif;
+      padding-top: 56px; /* Độ cao của navbar (để tránh bị che bởi navbar) */
+    }
+
+    .navbar {
+      background-color: #007bff !important; /* Màu xanh dương của Bootstrap */
+    }
+
+    .navbar-brand {
+      font-size: 24px; /* Kích thước chữ "Hotel Booking" */
+      font-weight: bold; /* Chữ đậm */
+      color: #ffffff !important; /* Màu chữ trắng */
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .room-list {
+      display: flex;
+      flex-wrap: wrap; /* Bao gồm nhiều dòng nếu không đủ chỗ */
+      justify-content: space-around; /* Căn giữa theo chiều ngang */
+    }
+
+    .room-card {
+      width: 300px; /* Độ rộng của mỗi khối phòng */
+      margin: 20px;
+      background-color: #fff; /* Màu nền trắng của khối phòng */
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      cursor: pointer; /* Biến con trỏ thành bàn tay khi di chuyển qua khối phòng */
+      transition: background-color 0.3s; /* Hiệu ứng chuyển động màu nền */
+    }
+
+    .room-card:hover {
+      background-color: #f0f0f0; /* Màu nền sáng hơn khi hover */
+    }
+
+    a {
+      text-decoration: none;
+      color: #495057; /* Màu chữ đen */
+    }
+
+    a:hover {
+      text-decoration: none; /* Loại bỏ gạch chân khi hover */
+    }
+
+    .add-room-link {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #28a745; /* Màu xanh lá cây của Bootstrap */
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+
+    .add-room-link:hover {
+      background-color: #218838; /* Màu xanh lá cây tối hơn khi hover */
+    }
+
+    .room-form {
+      margin-top: 20px;
+    }
+
+    .form-label {
+      font-weight: bold;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <a class="navbar-brand" href="#">Hotel Booking</a>
+</nav>
+<div class="container mt-5">
+  <h2 th:text="${'Room List - ' + hotelName}"></h2>
+  <div class="room-list">
+    <div th:each="room : ${rooms}" class="room-card">
+      <span th:text="${'Room Number: ' + room.roomNumber}"></span><br>
+      <span th:text="${'Room Type: ' + room.roomType}"></span><br>
+      <span th:text="${'Price: $' + room.price}"></span>
+    </div>
+  </div>
+  <a th:href="@{'/hotel/' + ${hotelId} + '/add_room'}" class="add-room-link">Add New Room</a>
+
+  <a th:href="@{'/home'}" class="add-room-link">Back to Home</a>
+</div>
+
+<!-- Thêm script Bootstrap và script chuyển hướng -->
+
+</body>
+</html>

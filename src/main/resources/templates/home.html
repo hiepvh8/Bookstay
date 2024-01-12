@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking</title>
+    <!-- Thêm link Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Màu nền xám nhạt */
+            font-family: Arial, sans-serif;
+            padding-top: 56px; /* Độ cao của navbar (để tránh bị che bởi navbar) */
+        }
+
+        .navbar {
+            background-color: #007bff !important; /* Màu xanh dương của Bootstrap */
+        }
+
+        .navbar-brand {
+            font-size: 24px; /* Kích thước chữ "Hotel Booking" */
+            font-weight: bold; /* Chữ đậm */
+            color: #ffffff !important; /* Màu chữ trắng */
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .hotel-list {
+            display: flex;
+            flex-direction: column; /* Sắp xếp theo chiều dọc */
+            align-items: center; /* Căn giữa theo chiều ngang */
+        }
+
+        .hotel-item {
+            width: 80%; /* Độ rộng của mỗi khối hotel, có thể điều chỉnh theo ý muốn */
+            margin-bottom: 20px;
+        }
+
+        .hotel-card {
+            background-color: #fff; /* Màu nền trắng của khối hotel */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            cursor: pointer; /* Biến con trỏ thành bàn tay khi di chuyển qua khối hotel */
+            transition: background-color 0.3s; /* Hiệu ứng chuyển động màu nền */
+        }
+
+        .hotel-card:hover {
+            background-color: #f0f0f0; /* Màu nền sáng hơn khi hover */
+        }
+
+        a {
+            text-decoration: none;
+            color: #495057; /* Màu chữ đen */
+        }
+
+        a:hover {
+            text-decoration: none; /* Loại bỏ gạch chân khi hover */
+        }
+
+        .add-hotel-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745; /* Màu xanh lá cây của Bootstrap */
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .add-hotel-link:hover {
+            background-color: #218838; /* Màu xanh lá cây tối hơn khi hover */
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <a class="navbar-brand" href="#">Hotel Booking</a>
+</nav>
+<div class="container mt-5">
+    <h2>Hotel List</h2>
+    <div class="hotel-list">
+        <div th:each="hotel : ${hotels}" class="hotel-item">
+            <a th:href="@{'/hotel/' + ${hotel.id}}">
+                <div class="hotel-card">
+                    <span th:text="${hotel.name}"></span>
+                </div>
+            </a>
+        </div>
+    </div>
+    <a th:href="@{/home/add_hotel}" class="add-hotel-link">Add New Hotel</a>
+</div>
+<!-- Thêm script Bootstrap (đặt ở cuối trang trước thẻ đóng </body>) -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

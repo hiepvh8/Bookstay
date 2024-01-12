@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Room</title>
+  <!-- Thêm link Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa; /* Màu nền xám nhạt */
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    h2 {
+      color: #007bff; /* Màu chữ xanh dương */
+    }
+
+    label {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #007bff; /* Màu chữ xanh dương */
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #007bff; /* Màu nền xanh dương cho button */
+      color: #fff; /* Màu chữ trắng */
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3; /* Màu nền xanh dương tối hơn khi hover */
+    }
+
+    .back-to-hotel-btn {
+      display: inline-block;
+      margin-top: 20px;
+    }
+
+    .back-to-hotel-btn a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff; /* Màu nền xanh dương cho button */
+      color: #fff; /* Màu chữ trắng */
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .back-to-hotel-btn a:hover {
+      background-color: #0056b3; /* Màu nền xanh dương tối hơn khi hover */
+    }
+  </style>
+</head>
+<body>
+<!-- Thêm navbar và container -->
+<div class="container">
+  <h2>Add New Room</h2>
+  <form th:action="@{'/hotel/' + ${hotelId} + '/add_room'}" th:object="${newRoom}" method="post">
+    <!-- Thêm các trường cho form -->
+    <label for="roomNumber">Room Number:</label>
+    <input type="text" id="roomNumber" name="roomNumber" th:field="*{roomNumber}" required>
+
+    <label for="roomType">Room Type:</label>
+    <input type="text" id="roomType" name="roomType" th:field="*{roomType}" required>
+
+    <label for="price">Price:</label>
+    <input type="text" id="price" name="price" th:field="*{price}" required>
+
+    <button type="submit">Add Room</button>
+  </form>
+  <div class="back-to-hotel-btn">
+    <a th:href="@{'/hotel/' + ${hotelId}}">Back to Hotel Detail</a>
+  </div>
+</div>
+
+<!-- Thêm script Bootstrap và script chuyển hướng -->
+</body>
+</html>
